@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Shop_API;
 using Shop_API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,14 +11,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ProductosDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ProductosDBContext")));
-
-builder.Services.AddDbContext<CarritoDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CarritoDBContext")));
-
-builder.Services.AddDbContext<UsuariosDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("UsuariosDBContext")));
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDbServer")));
 
 var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();

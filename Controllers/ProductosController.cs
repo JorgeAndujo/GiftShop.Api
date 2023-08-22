@@ -10,26 +10,26 @@ namespace Shop_API.Controllers
     [ApiController]
     public class ProductosController : ControllerBase
     {
-        private readonly ProductosDBContext _productosDBContext;
+        private readonly AppDbContext _dbContext;
 
-        public ProductosController(ProductosDBContext productosDBContext)
+        public ProductosController(AppDbContext dbContext)
         {
-            _productosDBContext = productosDBContext;
+            _dbContext = dbContext;
         }
 
         [HttpGet]
         [Route("GetProductos")]
         public async Task<IEnumerable<Productos>> GetProductos()
         {
-            return await _productosDBContext.Productos.ToListAsync();
+            return await _dbContext.Productos.ToListAsync();
         }
 
         [HttpPost]
         [Route("AddProductos")]
         public async Task<Productos> AddProductos(Productos objProductos)
         {
-            _productosDBContext.Productos.Add(objProductos);
-            await _productosDBContext.SaveChangesAsync();
+            _dbContext.Productos.Add(objProductos);
+            await _dbContext.SaveChangesAsync();
             return objProductos;
         }
 
@@ -37,8 +37,8 @@ namespace Shop_API.Controllers
         [Route("UpdateProductos/{id}")]
         public async Task<Productos> UpdateProductos(Productos objProductos)
         {
-            _productosDBContext.Entry(objProductos).State=EntityState.Modified;
-            await _productosDBContext.SaveChangesAsync();
+            _dbContext.Entry(objProductos).State=EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
             return objProductos;
         }
 
@@ -47,12 +47,12 @@ namespace Shop_API.Controllers
         public bool DeleteProductos(int id)
         {
             bool a = false;
-            var producto = _productosDBContext.Productos.Find(id);
+            var producto = _dbContext.Productos.Find(id);
             if (producto != null)
             {
                 a = true;
-                _productosDBContext.Entry(producto).State=EntityState.Deleted;
-                _productosDBContext.SaveChanges();
+                _dbContext.Entry(producto).State=EntityState.Deleted;
+                _dbContext.SaveChanges();
             }
             else
             {

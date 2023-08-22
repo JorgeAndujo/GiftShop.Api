@@ -9,7 +9,7 @@ using Shop_API.Models;
 
 namespace Shop_API.Migrations
 {
-    [DbContext(typeof(ProductosDBContext))]
+    [DbContext(typeof(AppDbContext))]
     partial class ProductosDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

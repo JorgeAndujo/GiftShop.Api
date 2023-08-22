@@ -10,7 +10,7 @@ using Shop_API.Models;
 
 namespace Shop_API.Migrations
 {
-    [DbContext(typeof(ProductosDBContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20230325202221_initial")]
     partial class initial
     {

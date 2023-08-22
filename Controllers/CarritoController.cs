@@ -10,26 +10,26 @@ namespace Shop_API.Controllers
     [ApiController]
     public class CarritoController : ControllerBase
     {
-        private readonly CarritoDBContext _CarritoDBContext;
+        private readonly AppDbContext _dbContext;
 
-        public CarritoController(CarritoDBContext carritoDBContext)
+        public CarritoController(AppDbContext dbContext)
         {
-            _CarritoDBContext = carritoDBContext;
+            _dbContext = dbContext;
         }
 
         [HttpGet]
         [Route("GetCarrito")]
         public async Task<IEnumerable<Carrito>> GetCarrito()
         {
-            return await _CarritoDBContext.Carrito.ToListAsync();
+            return await _dbContext.Carrito.ToListAsync();
         }
 
         [HttpPost]
         [Route("AgregarCarrito")]
         public async Task<Carrito> AgregarCarrito(Carrito objCarrito)
         {
-            _CarritoDBContext.Carrito.Add(objCarrito);
-            await _CarritoDBContext.SaveChangesAsync();
+            _dbContext.Carrito.Add(objCarrito);
+            await _dbContext.SaveChangesAsync();
             return objCarrito;
         }
 
@@ -38,12 +38,12 @@ namespace Shop_API.Controllers
         public bool DeleteCarrito(int id)
         {
             bool a = false;
-            var carrito = _CarritoDBContext.Carrito.Find(id);
+            var carrito = _dbContext.Carrito.Find(id);
             if (carrito != null)
             {
                 a = true;
-                _CarritoDBContext.Entry(carrito).State = EntityState.Deleted;
-                _CarritoDBContext.SaveChanges();
+                _dbContext.Entry(carrito).State = EntityState.Deleted;
+                _dbContext.SaveChanges();
             }
             else
             {
@@ -57,11 +57,11 @@ namespace Shop_API.Controllers
         public async Task<IActionResult> CleanCarrito(int UsuarioID)
         {
             try {
-                var cart = _CarritoDBContext.Carrito.Where((x)=>x.UsuarioID==UsuarioID).ToList();
+                var cart = _dbContext.Carrito.Where((x)=>x.UsuarioID==UsuarioID).ToList();
                 if (cart != null)
                 {
-                    _CarritoDBContext.Carrito.RemoveRange(cart);
-                    _CarritoDBContext.SaveChanges();
+                    _dbContext.Carrito.RemoveRange(cart);
+                    _dbContext.SaveChanges();
                     return Ok(UsuarioID);
                 }
                 else

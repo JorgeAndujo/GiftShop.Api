@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\UTS\\ShopAPI\\Shop_API\\Shop_API.csproj": {}
+    "C:\\Escuela\\GiftShop.Api\\Shop_API.csproj": {}
   },
   "projects": {
-    "C:\\UTS\\ShopAPI\\Shop_API\\Shop_API.csproj": {
+    "C:\\Escuela\\GiftShop.Api\\Shop_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\UTS\\ShopAPI\\Shop_API\\Shop_API.csproj",
+        "projectUniqueName": "C:\\Escuela\\GiftShop.Api\\Shop_API.csproj",
         "projectName": "Shop_API",
-        "projectPath": "C:\\UTS\\ShopAPI\\Shop_API\\Shop_API.csproj",
-        "packagesPath": "C:\\Users\\PADRINO\\.nuget\\packages\\",
-        "outputPath": "C:\\UTS\\ShopAPI\\Shop_API\\obj\\",
+        "projectPath": "C:\\Escuela\\GiftShop.Api\\Shop_API.csproj",
+        "packagesPath": "C:\\Users\\Jorge\\.nuget\\packages\\",
+        "outputPath": "C:\\Escuela\\GiftShop.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PADRINO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jorge\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -84,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -10,26 +10,26 @@ namespace Shop_API.Controllers
     [ApiController]
     public class UsuariosController : ControllerBase
     {
-        private readonly UsuariosDBContext _usuariosDBContext;
+        private readonly AppDbContext _dbContext;
 
-        public UsuariosController(UsuariosDBContext usuariosDBContext)
+        public UsuariosController(AppDbContext dbContext)
         {
-            _usuariosDBContext = usuariosDBContext;
+            _dbContext = dbContext;
         }
 
         [HttpGet]
         [Route("GetUsuarios")]
         public async Task<IEnumerable<Usuarios>> GetUsuarios()
         {
-            return await _usuariosDBContext.Usuarios.ToListAsync();
+            return await _dbContext.Usuarios.ToListAsync();
         }
 
         [HttpPost]
         [Route("AddUsuarios")]
         public async Task<Usuarios> AddUsuarios(Usuarios objUsuarios)
         {
-            _usuariosDBContext.Add(objUsuarios);
-            await _usuariosDBContext.SaveChangesAsync();
+            _dbContext.Add(objUsuarios);
+            await _dbContext.SaveChangesAsync();
             return objUsuarios;
         }
 
@@ -37,8 +37,8 @@ namespace Shop_API.Controllers
         [Route("UpdateUsuarios/{id}")]
         public async Task<Usuarios> UpdateUsuarios(Usuarios objUsuarios)
         {
-            _usuariosDBContext.Entry(objUsuarios).State = EntityState.Modified;
-            await _usuariosDBContext.SaveChangesAsync();
+            _dbContext.Entry(objUsuarios).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
             return objUsuarios;
         }
 
@@ -47,12 +47,12 @@ namespace Shop_API.Controllers
         public bool DeleteUsuarios(int id)
         {
             bool a = false;
-            var usuario = _usuariosDBContext.Usuarios.Find(id);
+            var usuario = _dbContext.Usuarios.Find(id);
             if (usuario != null)
             {
                 a = true;
-                _usuariosDBContext.Entry(usuario).State = EntityState.Deleted;
-                _usuariosDBContext.SaveChanges();
+                _dbContext.Entry(usuario).State = EntityState.Deleted;
+                _dbContext.SaveChanges();
             }
             else
             {
